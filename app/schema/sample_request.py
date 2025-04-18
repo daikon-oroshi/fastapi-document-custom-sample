@@ -8,8 +8,8 @@ class BRequest(BaseModel):
 
     b: str = Field(
         ...,
-        title="Request string",
-        description="Request string for the item to search in items",
+        title="b title here",
+        description="b description here",
         max_length=50,
         min_length=3,
     )
