@@ -1,10 +1,8 @@
 from typing import Any
-from enum import StrEnum
 from pydantic_core import core_schema as cs
 from pydantic import GetJsonSchemaHandler
 from pydantic.json_schema import JsonSchemaValue
-from enum import EnumMeta, Enum
-from abc import ABCMeta
+from enum import Enum
 
 
 class CustomSchemaEnum(Enum):
