@@ -1,10 +1,9 @@
 from pydantic import BaseModel, Field
-from fastapi import Query
 from .sample_enum import SampleEnum
 
 
 class SampleQuery(BaseModel):
-    aa: str = Query(
+    aa: str = Field(
         ...,
         title="aa title here",
         description="aa description here",
@@ -12,25 +11,24 @@ class SampleQuery(BaseModel):
         min_length=3,
         example="sample query",
     )
-    num_q: int = Query(
+    num_q: int = Field(
         ...,
         title="num_q title here",
         description="num_q description here",
         ge=1,
         le=100,
     )
-    nullable_q: int | None = Query(
+    nullable_q: int | None = Field(
         10,
         title="nullable_q title here",
         description="nullable_q description here",
     )
-    # list treat as body
-    list_q: list[str] = Query(
+    list_q: list[str] = Field(
         ...,
         title="list_q title here",
         description="list_q description here",
     )
-    enum_q: SampleEnum = Query(
+    enum_q: SampleEnum = Field(
         ...,
         title="Sample enum",
         description="Sample enum for the item to search in items",

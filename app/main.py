@@ -3,6 +3,7 @@ import uvicorn
 from routes.sample import router as sample_router
 from tags import TAGS
 from document.openapi_yaml import set_openapi_yaml
+from document.openapi_custom_schema import set_custom_openapi
 
 
 app = FastAPI(
@@ -14,6 +15,7 @@ app = FastAPI(
 
 app.include_router(sample_router)
 set_openapi_yaml(app)
+set_custom_openapi(app)
 
 
 if __name__ == "__main__":

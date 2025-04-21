@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Query
+from typing import Annotated
 from schema.sample_query import SampleQuery
 from fastapi.responses import PlainTextResponse
 
@@ -13,9 +14,7 @@ router = APIRouter(prefix="/sample", tags=["sample"])
     operation_id="get_sample",
     response_class=PlainTextResponse,
 )
-async def get_sample(
-    query: SampleQuery = Depends(SampleQuery),
-):
+async def get_sample(query: Annotated[SampleQuery, Query()]):
     print(query)
     return "OK"
 
