@@ -23,6 +23,11 @@ class SampleQuery(BaseModel):
         title="nullable_q title here",
         description="nullable_q description here",
     )
+    nullable_default_none: int | None = Field(
+        None,
+        title="nullable_default_none title here",
+        description="nullable_default_none description here",
+    )
     list_q: list[str] = Field(
         ...,
         title="list_q title here",
