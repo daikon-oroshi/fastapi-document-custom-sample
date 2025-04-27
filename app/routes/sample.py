@@ -15,10 +15,9 @@ router = APIRouter(prefix="/sample", tags=["sample"])
     response_class=PlainTextResponse,
 )
 async def get_sample(query: Annotated[SampleQuery, Query()]):
-    print(query)
-    return "OK"
+    pass
 
 
 @router.post("/")
 async def create_item(item: dict):
-    return {"item": item}
+    pass
