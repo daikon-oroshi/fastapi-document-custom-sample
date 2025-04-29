@@ -15,7 +15,7 @@ def set_openapi_yaml(app: FastAPI) -> None:
         yaml_s = yaml.dump(openapi_json, Dumper=CDumper)
         return Response(yaml_s, media_type="text/yaml")
 
-    app.add_route(
+    app.add_api_route(
         "/openapi.yaml",
         read_openapi_yaml,
         methods=["GET"],
