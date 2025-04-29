@@ -11,7 +11,7 @@ app = FastAPI(
     title="FastAPI Sample Title",
     description="FastAPI Sample Description",
     version="0.0.1",
-    openapi_tags=TAGS,
+    openapi_tags=[tag.model_dump() for tag in TAGS],
     redoc_url=None,
 )
 

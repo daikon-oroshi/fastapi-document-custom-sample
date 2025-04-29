@@ -26,9 +26,17 @@ def set_custom_openapi(app: FastAPI) -> None:
         openapi_schema = get_openapi(
             title=app.title,
             version=app.version,
+            openapi_version=app.openapi_version,
             summary=app.summary,
             description=app.description,
+            terms_of_service=app.terms_of_service,
+            contact=app.contact,
+            license_info=app.license_info,
             routes=app.routes,
+            webhooks=app.webhooks.routes,
+            tags=app.openapi_tags,
+            servers=app.servers,
+            separate_input_output_schemas=app.separate_input_output_schemas,
         )
         openapi_schema["info"]["x-logo"] = {
             "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
