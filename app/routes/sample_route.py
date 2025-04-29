@@ -41,3 +41,14 @@ async def get_sample(query: Annotated[SampleQuery, Query()]):
 )
 async def create_item(request: SampleRequest):
     pass
+
+
+@router2.delete(
+    "/{item_id}",
+    summary="create_sample summary here",
+    description="create_sample description here",
+    operation_id="create_sample",
+    response_model=SampleResponse,
+)
+async def delete_item(item_id: int):
+    pass
