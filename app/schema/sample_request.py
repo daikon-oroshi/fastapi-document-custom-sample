@@ -1,9 +1,9 @@
 from pydantic import BaseModel, Field
 
 
-class BRequest(BaseModel):
+class SampleRequest(BaseModel):
     """
-    aaaaaaa
+    SampleRequest docstring here
     """
 
     b: str = Field(
@@ -20,9 +20,10 @@ class BRequest(BaseModel):
         ge=1,
         le=100,
     )
-    nullable_q: int | None = Field(
+    pageno: int | None = Field(
         10,
         title="Page size",
         description="Number of items to be returned per page",
         ge=1,
     )
+    perpage: int | None = Field()

@@ -1,4 +1,3 @@
-from typing import Any
 from pydantic_core import core_schema as cs
 from pydantic import GetJsonSchemaHandler
 from pydantic.json_schema import JsonSchemaValue
@@ -25,6 +24,10 @@ class CustomSchemaEnum(Enum):
 
 
 class SampleEnum(str, CustomSchemaEnum):
+    """
+    SampleEnum docstring here
+    """
+
     AAA = "01"
     BBB = "02"
     CCC = "03"

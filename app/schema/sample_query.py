@@ -3,6 +3,10 @@ from .sample_enum import SampleEnum
 
 
 class SampleQuery(BaseModel):
+    """
+    SampleQuery docstring here
+    """
+
     aa: str = Field(
         ...,
         title="aa title here",
