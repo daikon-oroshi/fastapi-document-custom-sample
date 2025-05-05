@@ -1,4 +1,45 @@
+from typing import Annotated, List
+from annotated_types import Len
 from pydantic import BaseModel, Field
+
+AlNum = Annotated[
+    str,
+    Field(
+        ...,
+        title="AlNum title here",
+        description="AlNum description here",
+        example="aaaa",
+        pattern=r"^[a-zA-Z0-9]+$",
+    ),
+]
+
+AlNumList = Annotated[
+    List[AlNum],
+    Len(max_length=2),
+    Field(
+        ...,
+        title="AlNumList title here",
+        description="AlNumList description here",
+        example=["aaaa", "bbbb"],
+        min_length=2,
+    ),
+]
+
+
+class ResponseSubModel(BaseModel):
+    a: int = Field(...)
+    b: bool = Field(...)
+
+
+SubModelFeild = Annotated[
+    ResponseSubModel,
+    Field(
+        ...,
+        title="SubModelFeild title here",
+        description="SubModelFeild description here",
+        example=ResponseSubModel(a=1, b=True),
+    ),
+]
 
 
 class SampleResponse(BaseModel):
@@ -6,9 +47,16 @@ class SampleResponse(BaseModel):
     SampleResponse docstring here
     """
 
-    nullable_q: int | None = Field(
-        10,
-        title="Page size",
-        description="Number of items to be returned per page",
-        ge=1,
+    res_str: AlNum = Field(..., description="req_str description here")
+
+    res_sub_model: SubModelFeild = Field(...)
+
+    res_list: AlNumList
+    res_list2: AlNumList = Field(
+        ...,
+        title="req_list2 title here",
+        description="req_list2 description here",
+        example=["vvv", "ddd"],
     )
+
+    # nullable_q: int | None = Annotated[]

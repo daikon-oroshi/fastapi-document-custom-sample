@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Path
 from typing import Annotated
 from fastapi.responses import PlainTextResponse
 from schema import SampleQuery, SampleRequest, SampleResponse
@@ -6,7 +6,6 @@ from tags import SAMPLE_TAG, SAMPLE_TAG2
 
 
 router1 = APIRouter(prefix="/sample", tags=[SAMPLE_TAG.name])
-router2 = APIRouter(prefix="/sample2", tags=[SAMPLE_TAG2.name])
 
 
 GET_SAMPLE_DESCRIPTION = """
@@ -25,30 +24,41 @@ GET_SAMPLE_DESCRIPTION = """
     "/",
     summary="get_sample sammary here \n",
     description=GET_SAMPLE_DESCRIPTION,
-    operation_id="get_sample",
+    operation_id="getSample",
     response_class=PlainTextResponse,
+    response_description="response description here",
 )
 async def get_sample(query: Annotated[SampleQuery, Query()]):
-    pass
+    print(query)
+    return ""
+
+
+router2 = APIRouter(prefix="/sample2", tags=[SAMPLE_TAG2.name])
 
 
 @router2.post(
-    "/",
-    summary="create_sample summary here",
-    description="create_sample description here",
-    operation_id="create_sample",
-    response_model=SampleResponse,
-)
-async def create_item(request: SampleRequest):
-    pass
-
-
-@router2.delete(
     "/{item_id}",
-    summary="create_sample summary here",
-    description="create_sample description here",
-    operation_id="create_sample",
+    summary="create_item summary here",
+    description="create_item description here",
     response_model=SampleResponse,
+    status_code=201,
 )
-async def delete_item(item_id: int):
-    pass
+async def create_item(
+    request: SampleRequest,
+    item_id: int = Path(
+        ...,
+        title="item_id title here",
+        description="item_id description here",
+        ge=1,
+        le=100,
+        example=10,
+    ),
+):
+    print(request)
+    print(item_id)
+    return SampleResponse(
+        res_str="aa",
+        res_sub_model={"a": 1, "b": True},
+        res_list=["aa"],
+        res_list2=["cc", "dd"],
+    )

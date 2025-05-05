@@ -1,29 +1,35 @@
-from pydantic import BaseModel, Field
+from pydantic import Field, BaseModel
+from .sample_query import SampleQuery
 
 
-class SampleRequest(BaseModel):
+class ReqSubModel(BaseModel):
+    """
+    SubModel docstring here
+    """
+
+    sub_str: str = Field(
+        ...,
+        title="sub_str title here",
+        description="sub_str description here",
+        max_length=50,
+        min_length=3,
+    )
+    sub_int: int = Field(
+        ...,
+        title="sub_int title here",
+        description="sub_int description here",
+        ge=1,
+        le=100,
+    )
+
+
+class SampleRequest(SampleQuery):
     """
     SampleRequest docstring here
     """
 
-    b: str = Field(
+    req_sub_model: ReqSubModel = Field(
         ...,
-        title="b title here",
-        description="b description here",
-        max_length=50,
-        min_length=3,
+        title="req_sub_model title here",
+        description="req_sub_model description here",
     )
-    b_num: int = Field(
-        ...,
-        title="Page number",
-        description="Page number of the results to be returned",
-        ge=1,
-        le=100,
-    )
-    pageno: int | None = Field(
-        10,
-        title="Page size",
-        description="Number of items to be returned per page",
-        ge=1,
-    )
-    perpage: int | None = Field()
