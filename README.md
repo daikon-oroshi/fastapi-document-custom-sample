@@ -6,7 +6,7 @@
 uv run app/main.py
 ```
 
-running on http://0.0.0.0:9000
+run on http://0.0.0.0:9000
 
 ## documents
 
