@@ -36,8 +36,21 @@ async def get_sample(query: Annotated[SampleQuery, Query()]):
 router2 = APIRouter(prefix="/sample2", tags=[SAMPLE_TAG2.name])
 
 
+ItemId = Annotated[
+    int,
+    Path(
+        ...,
+        title="item_id title here",
+        description="item_id description here",
+        ge=1,
+        le=100,
+        example=10,
+    ),
+]
+
+
 @router2.post(
-    "/{item_id}",
+    "/{item_id}/{item_id2}",
     summary="create_item summary here",
     description="create_item description here",
     response_model=SampleResponse,
@@ -45,7 +58,8 @@ router2 = APIRouter(prefix="/sample2", tags=[SAMPLE_TAG2.name])
 )
 async def create_item(
     request: SampleRequest,
-    item_id: int = Path(
+    item_id: ItemId,
+    item_id2: int = Path(
         ...,
         title="item_id title here",
         description="item_id description here",
@@ -56,6 +70,7 @@ async def create_item(
 ):
     print(request)
     print(item_id)
+    print(item_id2)
     return SampleResponse(
         res_str="aa",
         res_sub_model={"a": 1, "b": True},
