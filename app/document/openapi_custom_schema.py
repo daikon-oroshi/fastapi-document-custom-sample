@@ -13,7 +13,7 @@ def set_custom_openapi(app: FastAPI) -> None:
         )
         # 余計なので削除
         del schema["$defs"]
-        # default null だと optional にならないのでここで削除
+        # default null なのに key があると optional にならないのでここで削除
         for value in schema["properties"].values():
             if "default" in value.keys() and value["default"] is None:
                 del value["default"]

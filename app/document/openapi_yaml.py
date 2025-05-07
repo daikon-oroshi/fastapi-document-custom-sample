@@ -5,7 +5,7 @@ import yaml
 
 def set_openapi_yaml(app: FastAPI) -> None:
     """
-    Set the path to the OpenAPI YAML file.
+    Set the route to the OpenAPI YAML file.
     """
 
     @lru_cache()
