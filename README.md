@@ -1,5 +1,18 @@
 # FastAPI sample of Document Customization
 
+## setup
+
+### install uv
+
+see
+https://docs.astral.sh/uv/getting-started/installation/#uninstallation
+
+### install packages
+
+```
+uv sync
+```
+
 ## run
 
 ```
