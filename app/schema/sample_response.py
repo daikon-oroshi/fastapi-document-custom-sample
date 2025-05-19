@@ -1,6 +1,8 @@
 from typing import Annotated, List
 from annotated_types import Len
 from pydantic import BaseModel, Field
+from .sample_enum import PrefCode
+
 
 AlNum = Annotated[
     str,
@@ -58,5 +60,6 @@ class SampleResponse(BaseModel):
         description="req_list2 description here",
         example=["vvv", "ddd"],
     )
+    pref_code: PrefCode
 
     # nullable_q: int | None = Annotated[]

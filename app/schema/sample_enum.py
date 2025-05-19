@@ -31,3 +31,21 @@ class SampleEnum(str, CustomSchemaEnum):
     AAA = "01"
     BBB = "02"
     CCC = "03"
+
+
+class PrefCode(str, CustomSchemaEnum):
+    HOKKAIDO = "01"
+    AOMORI = "02"
+    IWATE = "03"
+    MIYAGI = "04"
+    AKITA = "05"
+    YAMAGATA = "06"
+    FUKUSHIMA = "07"
+    IBARAKI = "08"
+    TOCHIGI = "09"
+    GUNMA = "10"
+    SAITAMA = "11"
+    CHIBA = "12"
+    TOKYO = "13"
+    KANAGAWA = "14"
+    # ...以下省略...
