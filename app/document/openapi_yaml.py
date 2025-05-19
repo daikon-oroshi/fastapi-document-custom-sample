@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Response
 from functools import lru_cache
 import yaml
+from yamlcore import CoreDumper
 
 
 def set_openapi_yaml(app: FastAPI) -> None:
@@ -11,7 +12,7 @@ def set_openapi_yaml(app: FastAPI) -> None:
     @lru_cache()
     def read_openapi_yaml() -> Response:
         openapi_json = app.openapi()
-        yaml_s = yaml.dump(openapi_json, Dumper=yaml.CDumper)
+        yaml_s = yaml.dump(openapi_json, Dumper=CoreDumper)
         return Response(yaml_s, media_type="text/yaml")
 
     app.add_api_route(
